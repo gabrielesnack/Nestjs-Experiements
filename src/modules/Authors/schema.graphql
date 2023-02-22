@@ -1,9 +1,15 @@
+type Query
+
+extend type Query {
+  authorModule: AuthorQueries
+}
+
+type AuthorQueries {
+  author(id: Int!): Author
+}
+
 type Author {
   id: Int!
   firstName: String
   lastName: String
-}
-
-type Query {
-  author(id: Int!): Author
 }

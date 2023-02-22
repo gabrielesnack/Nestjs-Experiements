@@ -3,10 +3,10 @@ import { AuthorsService } from './authors.service';
 
 @Resolver('Author')
 export class AuthorsResolver {
-  constructor(private authorsService: AuthorsService) {}
+  constructor(private readonly authorsService: AuthorsService) {}
 
-  @Query('author')
-  async getAuthor(@Args('id') id: number) {
-    return this.authorsService.findOneById(id);
-  }
+  // @Query('author')
+  // async getAuthor(@Args('id') id: number) {
+  //   return this.authorsService.findOneById(id);
+  // }
 }

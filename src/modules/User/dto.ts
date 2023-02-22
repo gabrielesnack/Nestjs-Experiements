@@ -1,7 +1,9 @@
-import { CreatePostDTO } from '../Post/dto';
+import { IsInt } from 'class-validator';
+import { CreateUserInput, User } from 'src/graphql';
 
-export class CreateUserDTO {
-  name: string;
-  email: string;
-  post?: CreatePostDTO;
+export class UsersInput {
+  @IsInt()
+  id: User['id'];
 }
+
+export class CreateUserDTO extends CreateUserInput {}

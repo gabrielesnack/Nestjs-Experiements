@@ -5,6 +5,10 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AuthorsService {
   async findOneById(id: number) {
-    return 'hello';
+    return {
+      id: 1,
+      firstName: 'Gabriel',
+      lastName: 'Esnack',
+    };
   }
 }

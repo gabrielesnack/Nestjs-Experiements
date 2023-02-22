@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../../prisma.service';
 import { User, Prisma } from '@prisma/client';
 
@@ -6,9 +6,15 @@ import { User, Prisma } from '@prisma/client';
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllUsers(): Promise<User[]> {
+  async getAllUsers(id: User['id']): Promise<User[]> {
     // const { skip, take, cursor, where, orderBy } = params;
-    return this.prisma.user.findMany();
+    const response = await this.prisma.user.findMany({
+      where: {
+        id: id,
+      },
+    });
+
+    return response;
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {

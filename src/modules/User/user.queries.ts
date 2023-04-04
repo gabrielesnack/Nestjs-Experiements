@@ -1,18 +1,22 @@
-import { Resolver, Query, Args, ResolveField } from '@nestjs/graphql';
-import { UsersInput } from './dto';
-import { UserService } from './user.service';
+import { Resolver, Query, ResolveField, Parent } from '@nestjs/graphql';
+import { Hobby, Jobs, UserModel, UserQueryPayload } from './user.model';
 
-@Resolver('UserQueries')
+@Resolver(() => UserModel)
 export class UserQueriesResolver {
-  constructor(private userService: UserService) {}
+  constructor() {}
 
-  @Query('userModule')
+  @Query(() => UserQueryPayload)
   async userModule() {
     return {};
   }
 
-  @ResolveField('users')
-  async getUsers(@Args('input') input: UsersInput) {
-    return this.userService.getAllUsers(input.id);
+  @ResolveField(() => [Hobby])
+  async hobbies(@Parent() user: UserModel) {
+    return []
+  }
+
+  @ResolveField(() => [Jobs])
+  async jobs(@Parent() user: UserModel) {
+    return []
   }
 }

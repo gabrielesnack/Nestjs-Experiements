@@ -3,22 +3,15 @@ import { Module } from '@nestjs/common';
 // import { UserModule } from './modules/User/user.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { join } from 'path';
-import { AuthorsModule } from './modules/Authors/authors.module';
 import { UserModule } from './modules/User/user.module';
+import { join } from 'path';
 
 @Module({
   imports: [
-    AuthorsModule,
     UserModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      typePaths: ['./**/*.graphql'],
-      debug: true,
-      definitions: {
-        path: join(process.cwd(), 'src/graphql.ts'),
-        outputAs: 'class',
-      },
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
   ],
   controllers: [],

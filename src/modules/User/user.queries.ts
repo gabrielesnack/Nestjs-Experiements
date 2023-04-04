@@ -1,11 +1,11 @@
 import { Resolver, Query, ResolveField } from '@nestjs/graphql';
-import { UserListQueryPayload, UserModulePayload, UserQueryPayload } from './dtos/user-queries.dto';
+import { UserListQueryPayload, UserQueriesModule, UserQueryPayload } from './dtos/user-queries.dto';
 
-@Resolver(() => UserModulePayload)
+@Resolver(() => UserQueriesModule)
 export class UserQueriesResolver {
   constructor() {}
 
-  @Query(() => UserModulePayload)
+  @Query(() => UserQueriesModule)
   async userModule() {
     return {};
   }

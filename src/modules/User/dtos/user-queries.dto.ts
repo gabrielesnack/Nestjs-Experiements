@@ -3,7 +3,7 @@ import { UserModel } from "../user.model";
 import { UserResponse } from "./user.response.dto";
 
 @ObjectType()
-export class UserModulePayload {}
+export class UserQueriesModule {}
 
 @ObjectType()
 export class UserQueryPayload {

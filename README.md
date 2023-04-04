@@ -13,7 +13,7 @@
 
 Nest Integrated with other tools that are available in branches
 
-This branch is using **NestJs** with **Apollo GraphQL** and **Prisma** where mutations and queries were grouped by the same collection or module depends own your thinking and the way that you want use.
+This branch is using **NestJs** with **Apollo GraphQL** and **Prisma** where mutations and queries were grouped by the same collection or module depends own your thinking and the way that you want use. It was used code first to handle with graphql (probably is more interest split mutations and queries isolated in a single file each one of them)
 
 ## Installation
 

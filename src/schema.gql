@@ -2,32 +2,73 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Hobby {
-  id: Int!
-  name: String!
-}
-
-type Jobs {
-  id: Int!
-  name: String!
-}
-
 type UserModel {
   id: String!
   name: String!
-  hobbies: [Hobby!]!
-  jobs: [Jobs!]!
+  documentNumber: String!
+  documents: DocumentListQueryPayload!
 }
 
 type UserResponse {
   ok: Boolean!
 }
 
+type UserModulePayload {
+  user: UserQueryPayload!
+  users: UserListQueryPayload!
+}
+
 type UserQueryPayload {
-  data: UserModel!
+  data: UserModel
   response: UserResponse!
 }
 
+type UserListQueryPayload {
+  data: [UserModel!]
+  response: UserResponse!
+}
+
+type DocumentModel {
+  id: String!
+  name: String!
+  files: [FileModel!]!
+}
+
+type DocumentResponse {
+  ok: Boolean!
+}
+
+type DocumentModulePayload {
+  document: DocumentQueryPayload!
+  documents: DocumentListQueryPayload!
+  anotherSampleQuery: DocumentQueryPayload!
+}
+
+type DocumentQueryPayload {
+  data: DocumentModel
+  response: DocumentResponse!
+}
+
+type DocumentListQueryPayload {
+  data: [DocumentModel!]
+  response: DocumentResponse!
+}
+
+type FileModel {
+  id: String!
+  documentId: String!
+  url: String!
+  fileType: String
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
-  userModule: UserQueryPayload!
+  userModule: UserModulePayload!
+  documentModule: DocumentModulePayload!
 }

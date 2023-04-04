@@ -1,22 +1,22 @@
-import { Resolver, Query, ResolveField, Parent } from '@nestjs/graphql';
-import { Hobby, Jobs, UserModel, UserQueryPayload } from './user.model';
+import { Resolver, Query, ResolveField } from '@nestjs/graphql';
+import { UserListQueryPayload, UserModulePayload, UserQueryPayload } from './dtos/user-queries.dto';
 
-@Resolver(() => UserModel)
+@Resolver(() => UserModulePayload)
 export class UserQueriesResolver {
   constructor() {}
 
-  @Query(() => UserQueryPayload)
+  @Query(() => UserModulePayload)
   async userModule() {
     return {};
   }
 
-  @ResolveField(() => [Hobby])
-  async hobbies(@Parent() user: UserModel) {
-    return []
+  @ResolveField(() => UserQueryPayload)
+  async user() {
+    throw new Error('not implemented');
   }
 
-  @ResolveField(() => [Jobs])
-  async jobs(@Parent() user: UserModel) {
-    return []
+  @ResolveField(() => UserListQueryPayload)
+  async users() {
+    throw new Error('not implemented');
   }
 }

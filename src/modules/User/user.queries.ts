@@ -1,22 +1,42 @@
 import { Resolver, Query, ResolveField, Parent } from '@nestjs/graphql';
-import { Hobby, Jobs, UserModel, UserQueryPayload } from './user.model';
+import { User, UsersQueryPayload } from './user.model';
 
-@Resolver(() => UserModel)
+@Resolver(() => User)
 export class UserQueriesResolver {
   constructor() {}
 
-  @Query(() => UserQueryPayload)
-  async userModule() {
-    return {};
+  @Query(() => UsersQueryPayload)
+  users() {
+    return {
+      data: [
+        {
+          id: "VXNlcjox",
+          name: 'Gabriel',
+          fullName: 'User'
+        },
+        {
+          id: "VXNlcjoy",
+          name: 'John Doe',
+          fullName: 'User'
+        },
+      ],
+      response: {
+        ok: true
+      }
+    };
   }
 
-  @ResolveField(() => [Hobby])
-  async hobbies(@Parent() user: UserModel) {
-    return []
-  }
-
-  @ResolveField(() => [Jobs])
-  async jobs(@Parent() user: UserModel) {
-    return []
+  @Query(() => UsersQueryPayload)
+  user() {
+    return {
+      data: {
+        id: "VXNlcjox",
+        name: 'Gabriel',
+        fullName: 'User'
+      },
+      response: {
+        ok: true
+      }
+    };
   }
 }

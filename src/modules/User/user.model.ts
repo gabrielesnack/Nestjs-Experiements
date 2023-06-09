@@ -1,45 +1,31 @@
-import { Field, Int, ObjectType } from "@nestjs/graphql";
-
-@ObjectType()
-export class Hobby {
-  @Field(() => Int)
-  id: number;
-
-  @Field()
-  name: string;
-}
-
-@ObjectType()
-export class Jobs {
-  @Field(() => Int)
-  id: number;
-
-  @Field()
-  name: string;
-}
-
-@ObjectType()
-export class UserModel {
-  @Field()
-  id: string
-
+import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
+import { toGlobalId } from "graphql-relay";
+import { Node } from '../nodes/node.model';
+@ObjectType({ implements: Node})
+export class User extends Node  {
   @Field()
   name: string
-
-  @Field(() => [Hobby])
-  hobbies: Hobby[]
 }
 
-@ObjectType()
+@ObjectType({ isAbstract: true})
 export class UserResponse {
   @Field(() => Boolean)
   ok: boolean
 }
 
 @ObjectType()
+export class UsersQueryPayload {
+  @Field(() => [User], { nullable: "itemsAndList"})
+  data: User[]
+
+  @Field(() => UserResponse)
+  response: UserResponse
+}
+
+@ObjectType()
 export class UserQueryPayload {
-  @Field(() => UserModel)
-  data: UserModel
+  @Field(() => User, { nullable: true})
+  data: User
 
   @Field(() => UserResponse)
   response: UserResponse

@@ -1,5 +1,5 @@
 import { Resolver, Query, ResolveField, Parent } from '@nestjs/graphql';
-import { User, UsersQueryPayload } from './user.model';
+import { User, UsersQueryPayload, UserQueryPayload } from './user.model';
 
 @Resolver(() => User)
 export class UserQueriesResolver {
@@ -26,12 +26,12 @@ export class UserQueriesResolver {
     };
   }
 
-  @Query(() => UsersQueryPayload)
+  @Query(() => UserQueryPayload)
   user() {
     return {
       data: {
         id: "VXNlcjox",
-        name: 'Gabriel',
+        name: 'Esnack',
         fullName: 'User'
       },
       response: {

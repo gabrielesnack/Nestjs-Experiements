@@ -1,16 +1,21 @@
 import { Resolver, Mutation } from '@nestjs/graphql';
-import { User, UsersQueryPayload } from './user.model';
+import { User, UserQueryPayload } from './user.model';
 
 @Resolver(() => User)
 export class UserMutationsResolver {
   constructor() {}
 
-  @Mutation(() => UsersQueryPayload)
+  @Mutation(() => UserQueryPayload)
   updateUser() {
     return {
-      id: "VXNlcjox",
-      name: 'Abram',
-      fullName: 'User'
+      data: {
+        id: "VXNlcjox",
+        name: 'Abram',
+        fullName: 'User'
+      },
+      response: {
+        ok: true
+      }
     };
   }
 }
